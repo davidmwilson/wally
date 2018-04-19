@@ -21,6 +21,7 @@ class Robot(object):
         self._y = 0
         self._direction = "N"
         self._obstacles = set()
+        self._moves = []
         self._distance = 0
         self._max_distance = 0
         self._turn_count = 0
@@ -29,6 +30,11 @@ class Robot(object):
         self._block_count = 0
         self._total_move_count = 0
         self._debug = 0
+
+    def __iter__(self):
+    	''' implement iterator '''
+    	for move in self._moves:
+    		  yield move
 
     def set_debug_mode(self):
         ''' enable debug mode '''
@@ -49,6 +55,10 @@ class Robot(object):
     def set_obstacles(self, obstacles_set):
         ''' set obstacles for robot to look out for '''
         self._obstacles = obstacles_set
+
+    def set_moves(self, moves_list):
+        ''' set list of moves '''
+        self._moves = moves_list
 
     def calculate_distance(self):
         ''' now update euclidean distance and max if appropriate '''
@@ -115,6 +125,10 @@ class Robot(object):
     def current_location(self):
         ''' return current location pair as a set '''
         return (self._x, self._y)
+
+    def moves(self):
+        ''' return moves list '''
+        return self._moves
 
     def __repr__(self):
         '''

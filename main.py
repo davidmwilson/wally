@@ -26,13 +26,14 @@ def main(*args):
 
     robot = Robot("wally")
     robot.set_obstacles(obstacles)
+    robot.set_moves(moves)
     robot.set_location((0, 0))
     robot.set_direction("N")
     if DEBUG:
         robot.set_debug_mode()
 
     idx = 0
-    for move in moves:
+    for move in robot.moves():
         if DEBUG:
             print("main: move: {}: {}".format(idx, move))
         robot.make_move(move)
